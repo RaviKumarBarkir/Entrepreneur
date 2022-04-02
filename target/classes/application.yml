@@ -1,0 +1,49 @@
+environment: local
+project: xlo
+
+server:
+  port: 8085
+
+spring:
+  application:
+    name: EntrepreneurApplication-service
+  profiles:
+    active: local
+  data:
+    mongodb:
+      database: local
+      port: 27017
+  liquibase:
+    change-log: classpath:db/changelog/changelog.sql
+
+  rest:
+    connection-timeout: 5000
+    read-timeout: 5000
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+management:
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+management.health.ratelimiters.enabled: true
+
+resilience4j.ratelimiter:
+  instances:
+    processService:
+      limitForPeriod: 100
+      limitRefreshPeriod: 1s
+      timeoutDuration: 2s
+      registerHealthIndicator: true
+      eventConsumerBufferSize: 100

@@ -1,0 +1,7 @@
+com\privado\entities\Group.class
+com\privado\model\Role.class
+com\privado\controller\EntrepreneurController.class
+com\privado\model\Candidate.class
+com\privado\repository\GroupRepository.class
+com\privado\services\EntrepreneurServices.class
+com\privado\EntrepreneurApplication.class
